@@ -3,7 +3,6 @@ import { prop } from "./utils";
 export interface TodoEntity {
   key: string | number;
   todo: string;
-  done: boolean;
 }
 
 export type TodoEntityId = TodoEntity["key"];
@@ -17,6 +16,5 @@ export const makeTodoEntity = (
 ): TodoEntity => ({
   key: id,
   todo: text,
-  done: false,
   ...data,
 });
