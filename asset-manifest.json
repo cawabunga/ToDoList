@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/sunRock98/ToDoList/static/css/main.39abaeb4.chunk.css",
+    "main.js": "/sunRock98/ToDoList/static/js/main.0a0f78da.chunk.js",
+    "main.js.map": "/sunRock98/ToDoList/static/js/main.0a0f78da.chunk.js.map",
+    "runtime-main.js": "/sunRock98/ToDoList/static/js/runtime-main.1463eb06.js",
+    "runtime-main.js.map": "/sunRock98/ToDoList/static/js/runtime-main.1463eb06.js.map",
+    "static/css/2.de2ac02e.chunk.css": "/sunRock98/ToDoList/static/css/2.de2ac02e.chunk.css",
+    "static/js/2.a9b0f601.chunk.js": "/sunRock98/ToDoList/static/js/2.a9b0f601.chunk.js",
+    "static/js/2.a9b0f601.chunk.js.map": "/sunRock98/ToDoList/static/js/2.a9b0f601.chunk.js.map",
+    "static/js/3.a6755433.chunk.js": "/sunRock98/ToDoList/static/js/3.a6755433.chunk.js",
+    "static/js/3.a6755433.chunk.js.map": "/sunRock98/ToDoList/static/js/3.a6755433.chunk.js.map",
+    "index.html": "/sunRock98/ToDoList/index.html",
+    "static/css/2.de2ac02e.chunk.css.map": "/sunRock98/ToDoList/static/css/2.de2ac02e.chunk.css.map",
+    "static/css/main.39abaeb4.chunk.css.map": "/sunRock98/ToDoList/static/css/main.39abaeb4.chunk.css.map",
+    "static/js/2.a9b0f601.chunk.js.LICENSE.txt": "/sunRock98/ToDoList/static/js/2.a9b0f601.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1463eb06.js",
+    "static/css/2.de2ac02e.chunk.css",
+    "static/js/2.a9b0f601.chunk.js",
+    "static/css/main.39abaeb4.chunk.css",
+    "static/js/main.0a0f78da.chunk.js"
+  ]
+}
