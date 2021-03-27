@@ -1,9 +1,14 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import App from "./App";
 
-xtest("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+jest.mock("./components/ToDoList", () => ({
+  ToDoList: () => <div>TODO LIST MOCK</div>,
+}));
+
+describe("<App />", () => {
+  it("should render todo list", () => {
+    const { queryByText } = render(<App />);
+    expect(queryByText("TODO LIST MOCK")).toBeDefined();
+  });
 });

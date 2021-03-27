@@ -30,7 +30,7 @@ export const ToDo = ({ item, deleteClickHandler, setUpdate }: Props) => {
 
 
     return (
-        <List.Item >
+        <List.Item data-testid={'todo-item'}>
             <Col span={20}>
                 <div className="list">
                     <p>
