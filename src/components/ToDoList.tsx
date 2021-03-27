@@ -1,71 +1,67 @@
-import React, { useEffect, useState } from 'react';
-import { Divider, List } from 'antd';
-import { ToDoListHeader } from './ToDoListHeader';
-import { ToDo } from './ToDo';
-
-
+import React, {useEffect} from 'react';
+import {Divider, List} from 'antd';
+import {ToDoListHeader} from './ToDoListHeader';
+import {ToDo} from './ToDo';
+import {useTodoList} from "../app/useTodoList";
+import {serialize} from "../app/todoListStateSerializer";
+import {useTodoListStorage} from "../app/useTodoListStorage";
+import {useTodoListSelector} from "../app/useTodoListSelector";
+import {makeTodoEntity} from "../app/TodoEntity";
 
 export interface ITodo {
     todo: string;
     key: React.Key;
 }
 
+const defaultTodoItems = [
+    {
+        todo: 'Learn GraphQL and gRPC',
+        key: '16520'
+    },
+    {
+        todo: 'Add COOKIE Notification',
+        key: '16521'
+    },
+    {
+        todo: 'Refactor last week code',
+        key: '16522'
+    },
+    {
+        todo: 'Help the dog to find itself in that holly world',
+        key: '16523'
+    },
+    {
+        todo: 'Read: Los Angeles battles huge wildfires.',
+        key: '16525'
+    },
+];
 
 
 export const ToDoList = () => {
+    const {state, populateList, addTodoItem, updateTodoItem, removeTodoItem} = useTodoList();
+    const {write, read} = useTodoListStorage();
+    const todoItems = useTodoListSelector(state);
 
-    const [data, setData] = useState<ITodo[]>([
-        {
-            todo: 'Learn GraphQL and gRPC',
-            key: '16520'
-        },
-        {
-            todo: 'Add COOKIE Notification',
-            key: '16521'
-        },
-        {
-            todo: 'Refactor last week code',
-            key: '16522'
-        },
-        {
-            todo: 'Help the dog to find itself in that holly world',
-            key: '16523'
-        },
-        {
-            todo: 'Read: Los Angeles battles huge wildfires.',
-            key: '16525'
-        },
-    ]);
-
-    useEffect(() => {    
-        const item = window.localStorage.getItem('myToDos');
-        if (item) {
-            setData(JSON.parse(item));
-        }
+    useEffect(() => {
+        const data = read();
+        populateList(data ?? defaultTodoItems);
     }, []);
 
-    useEffect(() => { 
-        window.localStorage.setItem('myToDos', JSON.stringify(data));
-    },[data])
+    useEffect(() => {
+        write(serialize(state));
+    }, [write, state]);
 
     const addToDo = (todo: ITodo): void => {
-        setData([...data, todo]);
+        addTodoItem(todo);
     }
 
     const deleteClickHandler = (keyEl: React.Key) => {
-        const filtered = data.filter(el => el.key !== keyEl);
-        setData(filtered);
+        removeTodoItem(keyEl);
     }
 
     const setUpdate = (todoText: string, keyEL: React.Key) => {
-        const found = data.findIndex(el => el.key === keyEL);
-        setData(
-            [...data.slice(0, found),
-            { todo: todoText, key: keyEL },
-            ...data.slice(found + 1)]
-        );
+        updateTodoItem(makeTodoEntity(keyEL, todoText));
     }
-
 
     return (
         <div className='width_40'>
@@ -74,7 +70,7 @@ export const ToDoList = () => {
                 size="large"
                 header={<ToDoListHeader addToDo={addToDo} />}
                 bordered
-                dataSource={data}
+                dataSource={todoItems}
                 renderItem={item => <ToDo item={item}
                     deleteClickHandler={() => deleteClickHandler(item.key)}
                     setUpdate={setUpdate} />}
